@@ -213,7 +213,7 @@ Serial.print (" Circuit");
        Serial.println(" Good");
        resultS+="1";
     }
-    else if(counter[i] == 9){        
+    else if(counter[i] == NUMBER-1){        
        Serial.println(" Open");
        resultS+="O";
        lcd.setCursor(11,1);
