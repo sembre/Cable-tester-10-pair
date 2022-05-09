@@ -165,7 +165,6 @@ void runTest_10x2(){
       
   String resultS="";
   //user interface
-  delay(500); //debounce
   lcd.clear();
   lcd.setCursor(0,0);
   lcd.print("Cek:");
@@ -216,8 +215,8 @@ Serial.print (" Circuit");
     else if(counter[i] == NUMBER-1){        
        Serial.println(" Open");
        resultS+="O";
-       lcd.setCursor(11,1);
-       lcd.print("=OPEN");
+       lcd.setCursor(10,1);
+       lcd.print("=OPEN ");
        fail=true;
 
     }
