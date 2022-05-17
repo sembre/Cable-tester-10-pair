@@ -1,0 +1,43 @@
+{
+  "version": 1,
+  "author": "Sembre",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-arduino-mega", "id": "mega", "top": 23.9, "left": 34.07, "attrs": {} },
+    { "type": "wokwi-lcd1602", "id": "lcd1", "top": -353.31, "left": 38.12, "attrs": {} },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": -174.47,
+      "left": 215.68,
+      "attrs": { "value": "220" }
+    },
+    { "type": "wokwi-potentiometer", "id": "pot1", "top": -338.95, "left": -159.33, "attrs": {} },
+    {
+      "type": "wokwi-buzzer",
+      "id": "bz1",
+      "top": -150.63535023113076,
+      "left": -5.567617009193626,
+      "attrs": { "volume": "0.1" }
+    }
+  ],
+  "connections": [
+    [ "lcd1:RS", "mega:7", "green", [ "v110.9", "h117.18" ] ],
+    [ "lcd1:E", "mega:8", "green", [ "v119.09", "h87.15" ] ],
+    [ "lcd1:D4", "mega:9", "green", [ "v128.46", "h30.37" ] ],
+    [ "lcd1:D5", "mega:10", "green", [ "v137.82", "h9.16" ] ],
+    [ "lcd1:D6", "mega:11", "green", [ "v102.71", "h-29.6", "v41.55", "h19.31" ] ],
+    [ "lcd1:D7", "mega:12", "green", [ "v97.44", "h32.89", "v56.19", "h-63.21" ] ],
+    [ "lcd1:A", "r1:2", "green", [ "v27.42", "h72.97" ] ],
+    [ "r1:1", "lcd1:VDD", "red", [ "v-1.11", "h-139.98" ] ],
+    [ "mega:5V", "lcd1:VDD", "red", [ "v54.98", "h-194.1", "v-258.68", "h80.1" ] ],
+    [ "mega:GND.1", "pot1:GND", "black", [ "v-40.32", "h-2.25" ] ],
+    [ "mega:GND.1", "lcd1:VSS", "black", [ "v-42.8", "h-81.82" ] ],
+    [ "mega:GND.1", "lcd1:RW", "black", [ "v-54.06", "h-9.78" ] ],
+    [ "pot1:SIG", "lcd1:V0", "green", [ "v90.79", "h212.26" ] ],
+    [ "lcd1:VDD", "pot1:VCC", "red", [ "v31.42", "h-188.93" ] ],
+    [ "mega:GND.1", "lcd1:K", "black", [ "v-73.66", "h160.98", "v-163.56", "h-99.86" ] ],
+    [ "bz1:2", "mega:13", "green", [ "v40.16", "h132.35" ] ],
+    [ "mega:GND.1", "bz1:1", "black", [ "v-76.74", "h-36.19" ] ]
+  ]
+}
