@@ -72,10 +72,6 @@ void setup() {
   }
 }
 void loop() {
- //run the test
- runTest_10x2();
-}
-void runTest_10x2(){
 
   int statusBtn1 = digitalRead(pinBtn1); // kondisi S di sambung ke GND
   int statusBtn2 = digitalRead(pinBtn2);
