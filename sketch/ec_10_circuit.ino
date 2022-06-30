@@ -1,9 +1,16 @@
 #include <LiquidCrystal.h>
 // Sambungan pin pins LCD
+// LCD 16 X 2 -----> ARDUINO
+// 1 -----> GND          11 -----> 9(D4)
+// 2 -----> +5V          12 -----> 10(D5)
+// 3 -----> 6(CONTRAS)   13 -----> 11(D6)
+// 4 -----> 7(RS)        14 -----> 12(D7)
+// 5 -----> GND          15 -----> 5(BACKLIGHT)
+// 6 -----> 8(E)         16 -----> GND
 LiquidCrystal lcd(7, 8, 9, 10, 11, 12); //RS,E,D4,D5,D6,D7
-//pins
+//pins SIDE A , SIDE B
 int endA[10] = {22, 23, 24, 25, 26, 27, 28, 29, 30, 31}; //pins end A
-int endB[10] = {A9, A8, A7, A6, A5, A4, A3, A2, A1, A0}; //pins endB
+int endB[10] = {A9, A8, A7, A6, A5, A4, A3, A2, A1, A0}; //pins end B
 
 //Membuat variabel untuk LED
   int pinLed1 = 42; //KELUARAN BISA DI SAMBUNG DENGAN LED
@@ -36,7 +43,21 @@ int result[10] = {-1,-1, -1,-1,-1,-1,-1,-1,-1,-1};
 int test[10] = {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1};
 int counter[10] = {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1};
 bool fail =false;
+int Contrast = 60;
+#define LCD_Backlight 5
+const int speakerPin = 4;
+int frequency ;
+int POT = A10;
+int potVal = analogRead(POT);
+const int BUZZER_PIN = 13; // Arduino pin connected to Buzzer's pin
+
+
 void setup() {
+  frequency=map(potVal,0,1023,0,255);//scalarizing the value of the potentiometer into PWM values
+  pinMode(speakerPin, OUTPUT); //OUT Speaker headphone
+  analogWrite(6, Contrast); //Pin for LCD_Backlight 
+  pinMode(LCD_Backlight, OUTPUT); 
+  analogWrite(LCD_Backlight, 400);//Adjust for LCD_Backlight
 
  // variabel pinLed menjadi output digunakan untuk hitungan S
   pinMode(pinLed1, OUTPUT); //KELUARAN LED 1-10
@@ -62,7 +83,7 @@ void setup() {
   pinMode(pinBtn9, INPUT_PULLUP);
   pinMode(pinBtn10, INPUT_PULLUP);
 
-  pinMode(13, OUTPUT); // DISAMBUNG DENGAN TRANSISTOR SWITCH KEMUDIAN KE RELAY
+  pinMode(BUZZER_PIN, OUTPUT); // DISAMBUNG DENGAN TRANSISTOR SWITCH KEMUDIAN KE RELAY
   Serial.begin(115200); //serial used for debugging only / hasil lihat di omputer
   lcd.begin(16, 2); 
   //setup pins  
@@ -169,7 +190,7 @@ void loop() {
   lcd.print(" Circuit");
 Serial.print("  Check :  ");
 Serial.print (NUMBER); 
-Serial.print (" Circuit");  
+Serial.println (" Circuit");  
   lcd.setCursor(0,1);
   for(int i=0; i<NUMBER; i++){
      counter[i]=0;
@@ -228,12 +249,15 @@ Serial.print (" Circuit");
   digitalWrite(13, LOW);//Pin 13 MATI BUZZER MATI
    Serial.println("FAILED"); 
     lcd.setCursor(0,1);
-    lcd.print(resultS); 
+    lcd.print(resultS);
+    noTone (speakerPin); 
  }
  else{
     digitalWrite(13, HIGH);//Pin 13 Hidup , BUZZER NYALA
-   Serial.println("PASSED");
-   lcd.print("     PASSED");      
+    Serial.println("PASSED");
+    lcd.print("     PASSED"); 
+    tone(speakerPin,frequency);//using tone function to generate the tone of the frequency given by POT
+
  }
  void(* resetFunc) (void) = 0; //declare reset function @ address 0
   Serial.println("resetting");
