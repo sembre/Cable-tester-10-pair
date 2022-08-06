@@ -9,8 +9,8 @@
 // 6 -----> 8(E)         16 -----> GND
 LiquidCrystal lcd(7, 8, 9, 10, 11, 12); //RS,E,D4,D5,D6,D7
 //pins SIDE A , SIDE B
-int endA[10] = {22, 23, 24, 25, 26, 27, 28, 29, 30, 31}; //pins end A 15CZ-6Y No 1,... ,
-int endB[10] = {A9, A8, A7, A6, A5, A4, A3, A2, A1, A0}; //pins end B 15CZ-6H No 15,... ,
+int endA[10] = {22, 23, 24, 25, 26, 27, 28, 29, 30, 31}; //pins end A 15CZ-6Y No 15,... ,
+int endB[10] = {A9, A8, A7, A6, A5, A4, A3, A2, A1, A0}; //pins end B 15CZ-6H No 1,... ,
 
 //Membuat variabel untuk LED
   int pinLed1 = 42; //KELUARAN BISA DI SAMBUNG DENGAN LED No.1
