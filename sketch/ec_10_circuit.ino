@@ -232,8 +232,8 @@ Serial.println (" Circuit");
     else if(counter[i] == NUMBER-1){        
        Serial.println(" Open");
        resultS+="O";
-       lcd.setCursor(10,1);
-       lcd.print("=OPEN ");
+       lcd.setCursor(11,1);
+       lcd.print("=OPEN");
        fail=true;
 
     }
