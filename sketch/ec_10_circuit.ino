@@ -10,7 +10,7 @@
 LiquidCrystal lcd(7, 8, 9, 10, 11, 12); //RS,E,D4,D5,D6,D7
 //pins SIDE A , SIDE B
 int endA[10] = {22, 23, 24, 25, 26, 27, 28, 29, 30, 31}; //pins end A 15CZ-6Y No 15,... ,
-int endB[10] = {A9, A8, A7, A6, A5, A4, A3, A2, A1, A0}; //pins end B 15CZ-6H No 1,... ,
+int endB[10] = {63, 62, 61, 60, 59, 58, 57, 56, 55, 54}; //pins end B 15CZ-6H No 1,... ,
 
 //Membuat variabel untuk LED
   int pinLed1 = 42; //KELUARAN BISA DI SAMBUNG DENGAN LED No.1
@@ -47,7 +47,7 @@ int Contrast = 60;
 #define LCD_Backlight 5
 const int speakerPin = 4;
 int frequency ;
-int POT = A10;
+int POT = 64;
 int potVal = analogRead(POT);
 const int BUZZER_PIN = 13; // Arduino pin connected to Buzzer's pin
 
